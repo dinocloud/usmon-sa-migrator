@@ -126,4 +126,6 @@ que lo encontraran en el root de este proyecto.
     s3:
     ```
 
-5. Configurar 
+5. Para iniciar el proceso de migracion se debe ejcutar el siguiente comando:
+
+    * python3 migration.py --bucket NOMBRE_DEL_BUCKET_DE_DESTINO
