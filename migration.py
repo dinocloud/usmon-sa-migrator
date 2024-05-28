@@ -48,7 +48,7 @@ def sync_and_log(valor):
     print(f"Sincronización y log para {valor} completados en {elapsed_time}.")
 
 # Ejecutar el comando para cada valor y generar logs
-for valor in valores:
+for valor in containers:
     sync_and_log(valor)
 
 # Registrar la hora de finalización del script
