@@ -131,4 +131,4 @@
 
     Antes de iniciar el proceso de migracion de archivos debemos crear un archivo containers_file.json en el root de este proyecto y definirle todos los containers que se van a usar en formato json.
 
-    * python3 migration.py --bucket NOMBRE_DEL_BUCKET_DE_DESTINO
+    * python3 migration.py --bucket NOMBRE_DEL_BUCKET_DE_DESTINO --containers_json containers_file.json --transfers 8 --checkers 16
