@@ -127,8 +127,12 @@
     s3:
     ```
 
-5. Para iniciar el proceso de migracion se debe ejcutar el siguiente comando:
+6. Antes de iniciar el proceso de migracion de archivos debemos crear un archivo containers_file.json en el root de este proyecto y definirle todos los containers que se van a usar en formato json. Ver referencia en archivo containers_file.json.template.
 
-    Antes de iniciar el proceso de migracion de archivos debemos crear un archivo containers_file.json en el root de este proyecto y definirle todos los containers que se van a usar en formato json.
+    Para descargar los container usando la cli de Azure se debe correr el siguiente comando:
+
+    * az storage container list --account-name NOMBRE_DE_STORAGE_ACCOUNT --query '[].name'
+
+    Para iniciar el proceso de migracion se debe ejcutar el siguiente comando:
 
     * python3 migration.py --bucket NOMBRE_DEL_BUCKET_DE_DESTINO --containers_json containers_file.json --transfers 8 --checkers 16
