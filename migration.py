@@ -6,9 +6,13 @@ from datetime import datetime
 
 # Función para leer la lista de containers desde un archivo JSON
 def leer_containers_desde_json(ruta_json):
-    with open(ruta_json, 'r') as archivo:
-        containers = json.load(archivo)
-    return containers
+    try:
+        with open(ruta_json, 'r') as archivo:
+            containers = json.load(archivo)
+        return containers
+    except Exception as e:
+        print(f"Error al leer el archivo JSON: {e}")
+        exit(1)
 
 # Directorio de logs
 log_dir = "logs"
@@ -42,6 +46,9 @@ def sync_and_log(valor):
     with open(log_file, "w") as log:
         process = subprocess.Popen(comando, shell=True, stdout=log, stderr=log)
         process.communicate()
+        if process.returncode != 0:
+            print(f"Error al sincronizar {valor}. Terminando el script.")
+            exit(1)
 
     # Registrar la hora de finalización
     end_time = datetime.now()
