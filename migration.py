@@ -19,6 +19,7 @@ parser = argparse.ArgumentParser(description="Script para sincronizar y generar 
 parser.add_argument("--transfers", type=int, default=8, help="Número de transferencias simultáneas (por defecto: 8)")
 parser.add_argument("--checkers", type=int, default=16, help="Número de verificadores simultáneos (por defecto: 16)")
 parser.add_argument("--bucket", type=str, required=True, help="Nombre de S3 bucket")
+parser.add_argument("--containers_json", type=str, required=True, help="Ruta al archivo JSON que contiene la lista de containers")
 args = parser.parse_args()
 
 # Verificar si el bucket está vacío
