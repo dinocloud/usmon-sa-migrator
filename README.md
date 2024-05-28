@@ -31,7 +31,12 @@
     }
     ```
 
-2. Si no usamos Amazon Linux debemos instalar AWS Cli y probar listar buckets
+2. Instalar GIT y clonar este repositorio
+
+    * yum install git
+    * git clone https://github.com/dinocloud/usmon-sa-migrator.git
+
+3. Si no usamos Amazon Linux debemos instalar AWS Cli y probar listar buckets
 
     * https://docs.aws.amazon.com/es_es/cli/v1/userguide/cli-chap-install.html
     * Para comprobar la funcionalidad: aws s3 ls
@@ -44,7 +49,7 @@
     2024-05-19 03:43:24 asd-xxx-tf-states-xxxx-xxxx-2
     ```
 
-3. Instalar Azure Cli e iniciar sesion para configurar la SP (Service principal), que le dara el acceso al RCLONE para realizar el copiado.
+4. Instalar Azure Cli e iniciar sesion para configurar la SP (Service principal), que le dara el acceso al RCLONE para realizar el copiado.
 
     * curl -L https://aka.ms/InstallAzureCli | bash
     * az login 
@@ -71,7 +76,7 @@ que lo encontraran en el root de este proyecto.
     }
     ```
 
-4. Instalar rclone y configurar
+5. Instalar rclone y configurar
 
     * sudo -v ; curl https://rclone.org/install.sh | sudo bash
     * rclone --version
@@ -111,5 +116,11 @@ que lo encontraran en el root de este proyecto.
     
     Para corroborar que se haya configurado bien ingresamos el siguiente comando
 
-    * rclone listremotes
+    * rclone listremotes 
 
+    Debe devolver lo siguiente: 
+    
+    ```
+    AZStorageAccount:
+    s3:
+    ```
