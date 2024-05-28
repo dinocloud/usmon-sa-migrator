@@ -35,7 +35,7 @@
 
     * yum install git
     * git clone https://github.com/dinocloud/usmon-sa-migrator.git
-    * python3 get-pip.py --user
+    * python3 dependencias/get-pip.py --user
 
 3. Si no usamos Amazon Linux debemos instalar AWS Cli y probar listar buckets
 
