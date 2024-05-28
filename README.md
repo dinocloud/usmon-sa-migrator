@@ -87,7 +87,7 @@ que lo encontraran en el root de este proyecto.
     - go/tags: none
     ```
 
-    Una vez instalado debemos crar el siguiente archivo
+    Una vez instalado debemos crear el siguiente archivo
 
     * mkdir -p ~/.config/rclone
     * touch ~/.config/rclone/rclone.conf
