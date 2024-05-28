@@ -64,10 +64,10 @@
     {Storage Account Name} -> Nombre de storage account
     ```
     
-    * az ad sp create-for-rbac --name AWS-Rclone-Reader --role "Storage Blob Data Reader" --scopes /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.Storage/storageAccounts/{Storage Account Name}  
+    * az ad sp create-for-rbac --name AWS-Rclone-Reader --role "Storage Blob Data Reader" --scopes /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.Storage/storageAccounts/{Storage Account Name} 
 
-    Si todo es correcto deberia generar el recurso y devolver por unica vez un Json con las credenciales las cuales debemos completar en el archivo azure-principal.json
-que lo encontraran en el root de este proyecto.
+    Si todo es correcto deberia generar el recurso y devolver por unica vez un Json con las credenciales
+
     ```
     {
         "appId": "xxxxxx-fc8d-4b73-9a58-xxxxxx",
@@ -76,6 +76,7 @@ que lo encontraran en el root de este proyecto.
         "tenant": "xxxx-dd10-4cf6-xxxxx-xxxxx"
     }
     ```
+    Estas credenciales debemos crear e insertarlas en el archivo azure-principal.json usando como template el archivo azure-principal.json.template
 
 5. Instalar rclone y configurar
 
@@ -127,5 +128,7 @@ que lo encontraran en el root de este proyecto.
     ```
 
 5. Para iniciar el proceso de migracion se debe ejcutar el siguiente comando:
+
+    Antes de iniciar el proceso de migracion de archivos debemos crear un archivo containers_file.json en el root de este proyecto y definirle todos los containers que se van a usar en formato json.
 
     * python3 migration.py --bucket NOMBRE_DEL_BUCKET_DE_DESTINO
