@@ -15,6 +15,7 @@ if not os.path.exists(log_dir):
 parser = argparse.ArgumentParser(description="Script para sincronizar y generar logs con rclone.")
 parser.add_argument("--transfers", type=int, default=8, help="Número de transferencias simultáneas (por defecto: 8)")
 parser.add_argument("--checkers", type=int, default=16, help="Número de verificadores simultáneos (por defecto: 16)")
+parser.add_argument("--bucket", type=str, default="", help="Nombre de S3 bucket")
 args = parser.parse_args()
 
 # Registrar la hora de inicio del script
@@ -24,7 +25,7 @@ print(f"Inicio del script: {script_start_time}")
 
 # Función para ejecutar el comando rclone y generar logs
 def sync_and_log(valor):
-    comando = f"rclone sync AZStorageAccount:{valor} s3:usmon-staging-uploads-us-west-2/{valor} --transfers {args.transfers} --checkers {args.checkers} --verbose"
+    comando = f"rclone sync AZStorageAccount:{valor} s3:{args.bucket}/{valor} --transfers {args.transfers} --checkers {args.checkers} --verbose"
     log_file = os.path.join(log_dir, f"sync_{valor}.log")
 
     # Registrar la hora de inicio
