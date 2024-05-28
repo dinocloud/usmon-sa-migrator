@@ -35,6 +35,7 @@
 
     * yum install git
     * git clone https://github.com/dinocloud/usmon-sa-migrator.git
+    * python3 get-pip.py --user
 
 3. Si no usamos Amazon Linux debemos instalar AWS Cli y probar listar buckets
 
@@ -119,8 +120,10 @@ que lo encontraran en el root de este proyecto.
     * rclone listremotes 
 
     Debe devolver lo siguiente: 
-    
+
     ```
     AZStorageAccount:
     s3:
     ```
+
+5. Configurar 

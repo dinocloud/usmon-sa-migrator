@@ -15,7 +15,7 @@ if not os.path.exists(log_dir):
 parser = argparse.ArgumentParser(description="Script para sincronizar y generar logs con rclone.")
 parser.add_argument("--transfers", type=int, default=8, help="Número de transferencias simultáneas (por defecto: 8)")
 parser.add_argument("--checkers", type=int, default=16, help="Número de verificadores simultáneos (por defecto: 16)")
-parser.add_argument("--bucket", type=str, default="", help="Nombre de S3 bucket")
+parser.add_argument("--bucket", type=str, required=True, help="Nombre de S3 bucket")
 args = parser.parse_args()
 
 # Registrar la hora de inicio del script
