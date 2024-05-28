@@ -3,11 +3,11 @@ import os
 from datetime import datetime
 import argparse
 
-# Función para leer la lista de valores desde un archivo JSON
-def leer_valores_desde_json(ruta_json):
+# Función para leer la lista de containers desde un archivo JSON
+def leer_containers_desde_json(ruta_json):
     with open(ruta_json, 'r') as archivo:
-        valores = json.load(archivo)
-    return valores
+        containers = json.load(archivo)
+    return containers
 
 # Directorio de logs
 log_dir = "logs"
@@ -55,7 +55,7 @@ def sync_and_log(valor):
     print(f"Sincronización y log para {valor} completados en {elapsed_time}.")
 
 # Ejecutar el comando para cada valor y generar logs
-for valor in valores:
+for valor in containers:
     sync_and_log(valor)
 
 # Registrar la hora de finalización del script
