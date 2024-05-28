@@ -59,8 +59,12 @@ def sync_and_log(valor):
     print(f"Sincronización y log para {valor} completados en {elapsed_time}.")
 
 # Ejecutar el comando para cada valor y generar logs
-for valor in containers:
-    sync_and_log(valor)
+try:
+    for valor in containers:
+        sync_and_log(valor)
+except Exception as e:
+    print(e)
+    print("Terminando el script debido a un error.")
 
 # Registrar la hora de finalización del script
 script_end_time = datetime.now()
