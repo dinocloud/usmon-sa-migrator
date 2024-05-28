@@ -23,10 +23,6 @@ parser.add_argument("--bucket", type=str, required=True, help="Nombre de S3 buck
 parser.add_argument("--containers_json", type=str, required=True, help="Ruta al archivo JSON que contiene la lista de containers")
 args = parser.parse_args()
 
-# Verificar si el bucket está vacío
-if not args.bucket:
-    parser.error("El parámetro --bucket es obligatorio.")
-
 # Leer la lista de containers desde el archivo JSON
 containers = leer_containers_desde_json(args.containers_json)
 
