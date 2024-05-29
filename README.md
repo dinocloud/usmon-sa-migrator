@@ -2,6 +2,8 @@
 
 1. Configurar rclone
 
+    * mkdir -p ~/.config/rclone
+    * touch ~/.config/rclone/rclone.conf
     * vim ~/.config/rclone/rclone.conf
 
     A continaucion remplazar el valor NOMBRE_DEL_STORAGE por el de origen
