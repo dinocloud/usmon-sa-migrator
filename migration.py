@@ -11,7 +11,7 @@ def leer_containers_desde_json(ruta_json):
             containers = json.load(archivo)
         return containers
     except Exception as e:
-        print(f"Error al leer el archivo JSON: {e}")
+        print(f"Error al leer el archivo JSON: {e}", flush=True)
         exit(1)
 
 # Directorio de logs
@@ -34,7 +34,7 @@ containers = leer_containers_desde_json(args.containers_json)
 # Registrar la hora de inicio del script
 script_start_time = datetime.now()
 
-print(f"Inicio del script: {script_start_time}")
+print(f"Inicio del script: {script_start_time}", flush=True)
 
 # Función para ejecutar el comando rclone y generar logs
 def sync_and_log(valor):
@@ -47,10 +47,10 @@ def sync_and_log(valor):
     start_time = datetime.now()
 
     with open(log_file, "w") as log:
-        process = subprocess.Popen(comando, shell=True, stdout=log, stderr=log)
+        process = subprocess.Popen(comando, shell=True, stdout=log, stderr=log, bufsize=1, universal_newlines=True)
         process.communicate()
         if process.returncode != 0:
-            print(f"Error al sincronizar {valor}. Terminando el script.")
+            print(f"Error al sincronizar {valor}. Terminando el script.", flush=True)
             exit(1)
 
     # Registrar la hora de finalización
@@ -59,15 +59,15 @@ def sync_and_log(valor):
     # Calcular el tiempo transcurrido
     elapsed_time = end_time - start_time
 
-    print(f"Sincronización y log para {valor} completados en {elapsed_time}.")
+    print(f"Sincronización y log para {valor} completados en {elapsed_time}.", flush=True)
 
 # Ejecutar el comando para cada valor y generar logs
 try:
     for valor in containers:
         sync_and_log(valor)
 except Exception as e:
-    print(e)
-    print("Terminando el script debido a un error.")
+    print(e, flush=True)
+    print("Terminando el script debido a un error.", flush=True)
 
 # Registrar la hora de finalización del script
 script_end_time = datetime.now()
@@ -75,5 +75,5 @@ script_end_time = datetime.now()
 # Calcular el tiempo total de ejecución
 script_elapsed_time = script_end_time - script_start_time
 
-print(f"Todas las sincronizaciones han sido completadas en {script_elapsed_time}")
-print(f"Fin del script: {script_end_time} \n")
+print(f"Todas las sincronizaciones han sido completadas en {script_elapsed_time}", flush=True)
+print(f"Fin del script: {script_end_time} \n", flush=True)
