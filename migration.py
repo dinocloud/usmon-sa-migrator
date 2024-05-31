@@ -21,8 +21,8 @@ if not os.path.exists(log_dir):
 
 # Crear un analizador de argumentos
 parser = argparse.ArgumentParser(description="Script para sincronizar y generar logs con rclone.")
-parser.add_argument("--transfers", type=int, default=4, help="Número de transferencias simultáneas (por defecto: 8)")
-parser.add_argument("--checkers", type=int, default=8, help="Número de verificadores simultáneos (por defecto: 16)")
+parser.add_argument("--transfers", type=int, default=4, help="Número de transferencias simultáneas (por defecto: 4)")
+parser.add_argument("--checkers", type=int, default=8, help="Número de verificadores simultáneos (por defecto: 8)")
 parser.add_argument("--bucket", type=str, required=True, help="Nombre de S3 bucket")
 parser.add_argument("--containers_json", type=str, required=True, help="Ruta al archivo JSON que contiene la lista de containers")
 parser.add_argument("--debug", action='store_true', help="Activar salida detallada de rclone")
