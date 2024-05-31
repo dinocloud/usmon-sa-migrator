@@ -25,7 +25,7 @@ parser.add_argument("--transfers", type=int, default=4, help="Número de transfe
 parser.add_argument("--checkers", type=int, default=8, help="Número de verificadores simultáneos (por defecto: 16)")
 parser.add_argument("--bucket", type=str, required=True, help="Nombre de S3 bucket")
 parser.add_argument("--containers_json", type=str, required=True, help="Ruta al archivo JSON que contiene la lista de containers")
-parser.add_argument("--verbose", action='store_true', help="Activar salida detallada de rclone")
+parser.add_argument("--debug", action='store_true', help="Activar salida detallada de rclone")
 args = parser.parse_args()
 
 # Leer la lista de containers desde el archivo JSON
@@ -39,7 +39,7 @@ print(f"Inicio del script: {script_start_time}")
 # Función para ejecutar el comando rclone y generar logs
 def sync_and_log(valor):
     comando = f"rclone sync AZStorageAccount:{valor} s3:{args.bucket}/{valor} --transfers {args.transfers} --checkers {args.checkers}"
-    if args.verbose:
+    if args.debug:
         comando += " --verbose"
     log_file = os.path.join(log_dir, f"sync_{valor}.log")
 
