@@ -75,4 +75,4 @@
 
     Para iniciar el proceso de migracion se debe ejcutar el siguiente comando:
 
-    * python3 migration.py --bucket NOMBRE_DEL_BUCKET_DE_DESTINO --containers_json containers_file.json --transfers 8 --checkers 16
+    * python3 migration.py --bucket NOMBRE_DEL_BUCKET_DE_DESTINO --containers_json containers_file.json --transfers 8 --checkers 16 --debug
