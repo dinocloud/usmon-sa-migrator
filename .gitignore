@@ -1,3 +1,6 @@
 logs/*
 salida.logs
 !.gitkeep
+azure-principal.json
+containers_file.json
+nohup.out

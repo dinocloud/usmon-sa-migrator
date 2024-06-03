@@ -3,6 +3,7 @@ import os
 import argparse
 import json
 from datetime import datetime
+from collections import deque
 
 # Función para leer la lista de containers desde un archivo JSON
 def leer_containers_desde_json(ruta_json):
@@ -41,17 +42,31 @@ def sync_and_log(valor):
     comando = f"rclone sync AZStorageAccount:{valor} s3:{args.bucket}/{valor} --transfers {args.transfers} --checkers {args.checkers}"
     if args.debug:
         comando += " --verbose"
+
     log_file = os.path.join(log_dir, f"sync_{valor}.log")
 
     # Registrar la hora de inicio
     start_time = datetime.now()
 
-    with open(log_file, "w") as log:
-        process = subprocess.Popen(comando, shell=True, stdout=log, stderr=log, bufsize=1, universal_newlines=True)
-        process.communicate()
-        if process.returncode != 0:
-            print(f"Error al sincronizar {valor}. Terminando el script.", flush=True)
-            exit(1)
+    # Usar deque para mantener las últimas 100 líneas en memoria
+    last_100_lines = deque(maxlen=100)
+
+    process = subprocess.Popen(comando, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1, universal_newlines=True)
+
+    while True:
+        output = process.stdout.readline()
+        if output == "" and process.poll() is not None:
+            break
+        if output:
+            last_100_lines.append(output)
+            # Escribir las líneas del deque al archivo de log
+            with open(log_file, "w") as log:
+                log.writelines(last_100_lines)
+
+    process.communicate()
+    if process.returncode != 0:
+        print(f"Error al sincronizar {valor}. Terminando el script.", flush=True)
+        exit(1)
 
     # Registrar la hora de finalización
     end_time = datetime.now()
