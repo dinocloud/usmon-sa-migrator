@@ -27,6 +27,8 @@ parser.add_argument("--checkers", type=int, default=8, help="Número de verifica
 parser.add_argument("--bucket", type=str, required=True, help="Nombre de S3 bucket")
 parser.add_argument("--containers_json", type=str, required=True, help="Ruta al archivo JSON que contiene la lista de containers")
 parser.add_argument("--debug", action='store_true', help="Activar salida detallada de rclone")
+parser.add_argument("--max-age", type=str, help="Edad máxima de los archivos para la sincronización")
+parser.add_argument("--min-age", type=str, help="Edad mínima de los archivos para la sincronización")
 args = parser.parse_args()
 
 # Leer la lista de containers desde el archivo JSON
@@ -42,6 +44,10 @@ def sync_and_log(valor):
     comando = f"rclone sync AZStorageAccount:{valor} s3:{args.bucket}/{valor} --transfers {args.transfers} --checkers {args.checkers}"
     if args.debug:
         comando += " --verbose"
+    if args.max_age:
+        comando += f" --max-age {args.max_age}"
+    if args.min_age:
+        comando += f" --min-age {args.min_age}"
 
     log_file = os.path.join(log_dir, f"sync_{valor}.log")
 
